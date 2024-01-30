@@ -19,7 +19,7 @@ const Home = () => {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-midnight text-white">
+    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-purple">
       {loggedIn ? (
         submitted ? (
           <ThankYouScreen />
