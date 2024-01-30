@@ -38,6 +38,7 @@ const Home = () => {
         <LoginBox onLogin={handleLogin} />
       )}
     </main>
+    
   );
 };
 

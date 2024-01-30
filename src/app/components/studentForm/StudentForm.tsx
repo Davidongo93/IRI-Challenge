@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { IFormData } from "@/app/interfaces/formInterface";
 import { validateStudentForm } from "@/app/helpers/validator";
 
 const StudentForm: React.FC<{
@@ -14,10 +13,7 @@ const StudentForm: React.FC<{
     const errors = validateStudentForm(studentName, hours, progress);
   
     if (Object.keys(errors).length === 0) {
-      // Llamar a la función onSubmit para enviar la información a la API
       onSubmit(studentName, hours, progress);
-  
-      // Limpiar los campos después de enviar la información
       setStudentName("");
       setHours("");
       setProgress("");
