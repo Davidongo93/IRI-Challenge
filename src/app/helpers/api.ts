@@ -46,18 +46,23 @@ export const loginUser = async (email: string, password: string): Promise<{ user
     throw error;
   }
 };
-const mentorUsername = 'Test';
-export const addMentorReport = async (student: string, hours: string, progress: string, mentorUsername: string): Promise<void> => {
-  const baseURL = 'https://api.airtable.com/v0/appwJkKjeYJE71e3Q/mentorReport';
 
-  const data = {
-    fields: {
-      student,
-      hours,
-      progress,
-      mentor: [mentorUsername],
+export const addMentorReport = async (studentName: string, hours: string, progress: string): Promise<void> => {
+  const baseURL = 'https://api.airtable.com/v0/appwJkKjeYJE71e3Q/mentorReport';
+console.log(studentName,hours,progress);
+
+const data = {
+  records: [
+    {
+      fields: {
+        studentName,
+        hours: Number(hours),
+        progress,
+      },
     },
-  };
+  ],
+};
+
 
   try {
     await axios.post<AirtableRecord>(baseURL, data, {
@@ -70,6 +75,6 @@ export const addMentorReport = async (student: string, hours: string, progress: 
     console.log('Mentor report added successfully.');
   } catch (error) {
     console.error('Error adding mentor report:', error);
-    throw error;
+    throw error; // Re-lanzar el error después de imprimirlo para que puedas ver detalles en la consola
   }
 };

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import LoginBox from "./components/loginBox/LoginBox";
 import StudentForm from "./components/studentForm/StudentForm";
 import ThankYouScreen from "./components/thankYouScreen/ThankYouScreen";
+import { addMentorReport } from "./helpers/api";
 
 const Home = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -12,9 +13,17 @@ const Home = () => {
     setLoggedIn(true);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (studentName:string, hours:string, progress:string) => {
 
-    setSubmitted(true);
+    if (studentName && hours && progress) {
+      try {
+        addMentorReport(studentName, hours, progress);
+        setSubmitted(true);
+      } catch (error) {
+        console.error('Error adding mentor report:', error);
+        // Puedes manejar el error aquí si es necesario
+      }
+    }
   };
 
   return (
