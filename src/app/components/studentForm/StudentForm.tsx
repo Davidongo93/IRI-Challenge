@@ -6,7 +6,10 @@ const StudentForm: React.FC<{ onSubmit: (data: IFormData) => void }> = ({ onSubm
   const [studentName, setStudentName] = useState("");
   const [hours, setHours] = useState("");
   const [progress, setProgress] = useState("");
-  const [formErrors, setFormErrors] = useState<{ studentName?: string[]; hours?: string[] }>({});
+  const [formErrors, setFormErrors] = useState<Record<string, string[]>>({
+    studentName: [],
+    hours: [],
+  });
 
   useEffect(() => {
     setFormErrors((prevErrors) => ({
@@ -17,7 +20,6 @@ const StudentForm: React.FC<{ onSubmit: (data: IFormData) => void }> = ({ onSubm
   }, [studentName, hours, progress]);
 
   const isFormValid = () => {
-    // Verificar si hay errores y si los campos no están vacíos
     const hasErrors = Object.keys(formErrors).some((key) => formErrors[key]?.length > 0);
     const isNotEmpty = studentName.trim() !== "" && hours.trim() !== "" && progress.trim() !== "";
 
